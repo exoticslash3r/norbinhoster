@@ -364,7 +364,7 @@
                 <label for="codeInput"><i class="fas fa-key"></i> Enter verification code:</label>
                 <input type="text" id="codeInput" class="code-input" maxlength="10" placeholder="Enter code from image">
                 <div class="error-message" id="errorMessage">
-                    <i class="fas fa-exclamation-triangle"></i> Incorrect code! You will be redirected.
+                    <i class="fas fa-exclamation-triangle"></i> Incorrect code! Bot detected. Redirecting...
                 </div>
             </div>
             
@@ -461,11 +461,11 @@
                 }, 1000);
                 
             } else {
-                // Wrong code - show error and redirect to bot detection page
+                // Wrong code - show error and redirect to the video link
                 errorMessage.style.display = 'block';
                 document.getElementById('codeInput').style.borderColor = '#e53935';
                 document.getElementById('submitBtn').disabled = true;
-                document.getElementById('submitBtn').innerHTML = '<i class="fas fa-times"></i> Access Denied';
+                document.getElementById('submitBtn').innerHTML = '<i class="fas fa-times"></i> Bot Detected';
                 document.getElementById('submitBtn').style.background = '#e53935';
                 
                 // Show timer
@@ -481,13 +481,8 @@
                     
                     if (countdown <= 0) {
                         clearInterval(countdownInterval);
-                        // Redirect to image first
-                        window.location.href = "https://i.postimg.cc/YLvqJsRd/image.png";
-                        
-                        // Then redirect to YouTube video after 1 second
-                        setTimeout(() => {
-                            window.location.href = "https://youtu.be/wNSec94klAY?si=UuOLmGZA-b0h382Y";
-                        }, 1000);
+                        // Redirect directly to the video link
+                        window.location.href = "https://ik.imagekit.io/ggxyxnvmy/17633602992pQISI7tecakXAhd.mp4?updatedAt=1766234232098";
                     }
                 }, 1000);
             }
