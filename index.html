@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Verification | Bot Protection</title>
+    <title>Security Verification | Human Check</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,24 +14,23 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: white;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: #fff;
+            color: #333;
         }
         
         .verification-container {
             width: 100%;
             max-width: 500px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: #fff;
+            border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
             position: relative;
             overflow: hidden;
         }
@@ -42,7 +41,7 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid #eee;
         }
         
         .logo {
@@ -50,7 +49,7 @@
             height: 60px;
             border-radius: 10px;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid #ddd;
         }
         
         .logo img {
@@ -62,54 +61,51 @@
         .header-text h1 {
             font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(to right, #4cc9f0, #4361ee);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #222;
         }
         
         .header-text p {
             font-size: 14px;
-            opacity: 0.8;
+            color: #666;
         }
         
         .verification-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
             padding: 25px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            border: 1px solid #e0e0e0;
         }
         
         .verification-title {
             font-size: 18px;
             margin-bottom: 20px;
             text-align: center;
-            color: #4cc9f0;
+            color: #222;
         }
         
         .device-info {
-            background: rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
             padding: 12px 15px;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-bottom: 20px;
             font-size: 14px;
-            border-left: 4px solid #4361ee;
+            border-left: 4px solid #555;
+            color: #333;
         }
         
         .device-info i {
             margin-right: 8px;
-            color: #4cc9f0;
+            color: #555;
         }
         
         .verify-button {
             width: 100%;
-            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            background: #333;
             color: white;
             border: none;
             padding: 16px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -121,9 +117,9 @@
         }
         
         .verify-button:hover {
-            background: linear-gradient(to right, #3a56d4, #2d0a8a);
+            background: #222;
             transform: translateY(-2px);
-            box-shadow: 0 7px 15px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
         
         .verify-button:active {
@@ -142,25 +138,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
         
         .verification-modal {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
+            background: #fff;
+            border-radius: 12px;
             width: 90%;
             max-width: 450px;
             padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
             transform: translateY(-100px);
             opacity: 0;
             animation: slideDown 0.5s forwards;
-            position: relative;
         }
         
         @keyframes slideDown {
@@ -175,45 +169,35 @@
             margin-bottom: 25px;
         }
         
-        .modal-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 15px;
+        .verification-banner {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
             overflow: hidden;
-            margin: 0 auto 15px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .modal-logo img {
+        .verification-banner img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
         
         .modal-header h2 {
             font-size: 22px;
-            margin-bottom: 5px;
-            color: #4cc9f0;
+            margin-bottom: 10px;
+            color: #222;
         }
         
         .modal-header p {
-            opacity: 0.8;
+            color: #666;
             font-size: 14px;
-        }
-        
-        .code-display {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(to right, #1a1a2e, #16213e);
+            margin-bottom: 15px;
         }
         
         .input-container {
@@ -224,36 +208,37 @@
             display: block;
             margin-bottom: 8px;
             font-size: 14px;
-            opacity: 0.9;
+            color: #555;
+            font-weight: 500;
         }
         
         .code-input {
             width: 100%;
             padding: 16px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            border-radius: 8px;
+            background: #fff;
+            border: 2px solid #ddd;
+            color: #333;
             font-size: 18px;
             text-align: center;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             font-weight: 600;
             transition: all 0.3s;
         }
         
         .code-input:focus {
             outline: none;
-            border-color: #4361ee;
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+            border-color: #555;
+            box-shadow: 0 0 0 3px rgba(85, 85, 85, 0.1);
         }
         
         .submit-btn {
             width: 100%;
-            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            background: #333;
             color: white;
             border: none;
             padding: 16px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -261,12 +246,11 @@
         }
         
         .submit-btn:hover {
-            background: linear-gradient(to right, #3ab8e0, #3a56d4);
-            transform: translateY(-2px);
+            background: #222;
         }
         
         .error-message {
-            color: #ff6b6b;
+            color: #e53935;
             font-size: 14px;
             margin-top: 10px;
             text-align: center;
@@ -277,7 +261,7 @@
             font-size: 16px;
             text-align: center;
             margin-top: 15px;
-            color: #4cc9f0;
+            color: #333;
             font-weight: 600;
         }
         
@@ -285,7 +269,7 @@
             text-align: center;
             font-size: 16px;
             margin: 20px 0;
-            color: #f72585;
+            color: #333;
             font-weight: 600;
         }
         
@@ -293,7 +277,15 @@
             text-align: center;
             font-size: 14px;
             margin-top: 10px;
-            opacity: 0.7;
+            color: #666;
+        }
+        
+        .note-text {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-top: 15px;
+            font-style: italic;
         }
         
         @media (max-width: 600px) {
@@ -305,9 +297,8 @@
                 font-size: 20px;
             }
             
-            .code-display {
-                font-size: 22px;
-                letter-spacing: 3px;
+            .verification-banner {
+                height: 120px;
             }
         }
         
@@ -315,7 +306,7 @@
             text-align: center;
             margin-top: 25px;
             font-size: 12px;
-            opacity: 0.6;
+            color: #999;
         }
     </style>
 </head>
@@ -332,16 +323,16 @@
         </div>
         
         <div class="tweaking-test">
-            <i class="fas fa-shield-alt"></i> Redirect to Norbin
+            <i class="fas fa-redo-alt"></i> Redirect to Norbin
         </div>
         
         <div class="verification-box">
             <div class="verification-title">
-                <i class="fas fa-user-check"></i> Human Verification Required
+                <i class="fas fa-user-shield"></i> Human Verification Required
             </div>
             
             <div class="device-info">
-                <i class="fas fa-laptop"></i> Device: <span id="device-info">Detecting...</span>
+                <i class="fas fa-desktop"></i> Device: <span id="device-info">Detecting...</span>
             </div>
             
             <button class="verify-button" id="verifyBtn">
@@ -361,22 +352,19 @@
     <div class="overlay" id="overlay">
         <div class="verification-modal">
             <div class="modal-header">
-                <div class="modal-logo">
-                    <img src="https://i.postimg.cc/bwSHDJ30/image.png" alt="Verification Logo">
+                <div class="verification-banner">
+                    <img src="https://i.postimg.cc/bwSHDJ30/image.png" alt="Verification Code Banner">
                 </div>
                 <h2>Enter Verification Code</h2>
-                <p>Enter the code shown below to prove you're human</p>
-            </div>
-            
-            <div class="code-display" id="codeDisplay">
-                10035355
+                <p>Enter the code shown in the image above to verify you're human</p>
+                <div class="note-text">Look at the image carefully and enter the code exactly as shown</div>
             </div>
             
             <div class="input-container">
-                <label for="codeInput"><i class="fas fa-key"></i> Enter the code above:</label>
-                <input type="text" id="codeInput" class="code-input" maxlength="8" placeholder="Enter 8-digit code">
+                <label for="codeInput"><i class="fas fa-key"></i> Enter verification code:</label>
+                <input type="text" id="codeInput" class="code-input" maxlength="10" placeholder="Enter code from image">
                 <div class="error-message" id="errorMessage">
-                    <i class="fas fa-exclamation-circle"></i> Incorrect code! You will be redirected.
+                    <i class="fas fa-exclamation-triangle"></i> Incorrect code! You will be redirected.
                 </div>
             </div>
             
@@ -463,8 +451,9 @@
                 // Show success message
                 errorMessage.style.display = 'none';
                 document.getElementById('submitBtn').innerHTML = '<i class="fas fa-check"></i> Verification Successful!';
-                document.getElementById('submitBtn').style.background = 'linear-gradient(to right, #4ade80, #22c55e)';
+                document.getElementById('submitBtn').style.background = '#4CAF50';
                 document.getElementById('submitBtn').disabled = true;
+                document.getElementById('codeInput').style.borderColor = '#4CAF50';
                 
                 // Redirect after 1 second
                 setTimeout(() => {
@@ -474,10 +463,10 @@
             } else {
                 // Wrong code - show error and redirect to bot detection page
                 errorMessage.style.display = 'block';
-                document.getElementById('codeInput').style.borderColor = '#ff6b6b';
+                document.getElementById('codeInput').style.borderColor = '#e53935';
                 document.getElementById('submitBtn').disabled = true;
                 document.getElementById('submitBtn').innerHTML = '<i class="fas fa-times"></i> Access Denied';
-                document.getElementById('submitBtn').style.background = 'linear-gradient(to right, #ef4444, #dc2626)';
+                document.getElementById('submitBtn').style.background = '#e53935';
                 
                 // Show timer
                 timerElement.style.display = 'block';
@@ -512,13 +501,13 @@
             
             if (this.value.length > 0) {
                 errorMessage.style.display = 'none';
-                this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                this.style.borderColor = '#ddd';
                 
                 // Reset button if it was disabled
                 if (submitBtn.disabled && this.value !== "10035355") {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify & Redirect';
-                    submitBtn.style.background = 'linear-gradient(to right, #4cc9f0, #4361ee)';
+                    submitBtn.style.background = '#333';
                     timerElement.style.display = 'none';
                 }
             }
